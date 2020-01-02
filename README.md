@@ -25,7 +25,7 @@ export PATH=$GOPATH/bin:$PATH
 
 fish
 ```sh
-# vim ~/.config/fish/config.fish に下記のコードを追加して保存
+# ~/.config/fish/config.fish に下記のコードを追加して保存
 set -x GOPATH $HOME/go
 set -x PATH $PATH $GOPATH/bin
 ```
