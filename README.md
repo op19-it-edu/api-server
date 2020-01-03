@@ -45,7 +45,34 @@ go version go1.13.5 darwin/amd64
 ### 準備
 
 1. `docker`と`docker-compose`のインストール
+
+Mac
+```sh
+$ brew install docker
+$ brew cask install docker
+```
+
+Linux
+```sh
+curl https://get.docker.com | sh
+sudo usermod -aG docker $USER
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+```
+
 2. `mysql`のインストール
+
+Mac
+```sh
+$ brew install mysql
+```
+Linux
+```sh
+$ sudo apt install mysql-server mysql-client
+```
+
 
 ### db_setupの使い方
 
