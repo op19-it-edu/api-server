@@ -54,12 +54,12 @@ $ brew cask install docker
 
 Linux
 ```sh
-curl https://get.docker.com | sh
-sudo usermod -aG docker $USER
-sudo systemctl start docker
-sudo systemctl enable docker
-sudo curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
+$ curl https://get.docker.com | sh
+$ sudo usermod -aG docker $USER
+$ sudo systemctl start docker
+$ sudo systemctl enable docker
+$ sudo curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+$ sudo chmod +x /usr/local/bin/docker-compose
 ```
 
 2. `mysql`のインストール
@@ -75,6 +75,8 @@ $ sudo apt install mysql-server mysql-client
 
 
 ### db_setupの使い方
+
+#### DBの作成
 
 1. `docker-compose.yml`があるディレクトリに移動する
 
@@ -146,4 +148,22 @@ Database changed
 /* tableを表示する */
 mysql> show tables;
 Empty set (0.02 sec)
+```
+
+#### DBの削除
+
+1. `docker-compose.yml`があるディレクトリに移動する
+
+```sh
+$ cd db_setup
+```
+
+2. コンテナを削除する
+
+```sh
+$ docker-compose down
+
+Stopping todotweet_db ... done
+Removing todotweet_db ... done
+Removing network db_setup_default
 ```
