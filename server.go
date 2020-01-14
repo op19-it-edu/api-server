@@ -3,6 +3,7 @@ package main
 import (
 	// controllerパッケージをimportしてctrというエイリアスをつける（使用するとき長いので）
 	ctr "./controller"
+	m "./model"
 
 	// go get "github.com/dgrijalva/jwt-go" を実行して事前に取得しとく
 	"github.com/labstack/echo"
@@ -13,6 +14,10 @@ import (
 
 // エンドポイント（ここから処理が始まる）
 func main() {
+
+	// migrationを実行
+	m.MigrateDB()
+
 	// Echoのインスタンス作る
 	e := echo.New()
 
