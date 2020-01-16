@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	// modelパッケージをimportしてmというエイリアスをつける
-	m "../model"
+	m "api-server/model"
 
 	"github.com/labstack/echo"
 )

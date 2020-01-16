@@ -2,8 +2,8 @@ package main
 
 import (
 	// controllerパッケージをimportしてctrというエイリアスをつける（使用するとき長いので）
-	ctr "./controller"
-	m "./model"
+	ctr "api-server/controller"
+	m "api-server/model"
 
 	// go get "github.com/dgrijalva/jwt-go" を実行して事前に取得しとく
 	"github.com/labstack/echo"
