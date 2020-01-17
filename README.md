@@ -65,18 +65,6 @@ $ sudo curl -L https://github.com/docker/compose/releases/download/1.16.1/docker
 $ sudo chmod +x /usr/local/bin/docker-compose
 ```
 
-2. `mysql`のインストール
-
-Mac
-```sh
-$ brew install mysql
-```
-Linux
-```sh
-$ sudo apt install mysql-server mysql-client
-```
-
-
 ### db_setupの使い方
 
 #### DBの作成
@@ -106,7 +94,7 @@ todotweet_db   docker-entrypoint.sh mysqld   Up      0.0.0.0:3306->3306/tcp, 330
 
 4. DBサーバーにアクセスできるか確認する
 ```sh
-$ mysql -u root -p -h 127.0.0.1 -P 3306
+$ docker exec -it todotweet_db mysql -u root -p -h 127.0.0.1 -P 3306
 
 # パスワードを要求されるので、入力（デフォルトはpassword）
 Enter password:
