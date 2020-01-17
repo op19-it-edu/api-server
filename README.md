@@ -11,7 +11,10 @@ $ brew install go
 
 Linux
 ```sh
-$ sudo apt install golang-go
+# https://golang.org/dl/ から最新バージョンを確認
+$ cd ~/
+$ wget https://dl.google.com/go/go1.13.5.linux-amd64.tar.gz
+$ tar -C ./ -xzf go1.13.5.linux-amd64.tar.gz
 ```
 
 2. PATHを通す
