@@ -35,7 +35,11 @@ func MigrateDB() {
 	db := InitDB()
 
 	// DBをentityの定義に従ってmigrationする
+
 	db.AutoMigrate(&User{})
+	// AddForeignKey()で外部キーを指定
+	db.AutoMigrate(&Relation{}).AddForeignKey("user_id", "users(id)", "RESTRICT", "RESTRICT").AddForeignKey("follow_id", "users(id)", "RESTRICT", "RESTRICT")
+	db.AutoMigrate(&TodoTweet{}).AddForeignKey("user_id", "users(id)", "RESTRICT", "RESTRICT")
 
 	// DBを閉じる
 	defer db.Close()
