@@ -28,7 +28,6 @@ func CreateUser() {
 	// これが追加するレコード
 	user := User{
 		Name:        "hogehoge",
-		Email:       "hogehoge@example.com",
 		Password:    "password",
 		Discription: "fugafuga",
 	}
