@@ -12,7 +12,7 @@ import (
 
 // ルーティング設定とサーバーの起動を定義
 
-// エンドポイント（ここから処理が始まる）
+// エントリーポイント（ここから処理が始まる）
 func main() {
 
 	// migrationを実行
@@ -28,10 +28,11 @@ func main() {
 
 	// 以下、pathとhandler関数の紐付け（ルーティング）
 
-	e.GET("/hello", ctr.Hello)
-	e.GET("/users", ctr.GetUsersHandler)
-	e.GET("/user/create", ctr.CreateUserHandler)
-	e.GET("/users/delete", ctr.DeleteUsersHandler)
+	e.POST("/signup", ctr.SignUp)
+	e.GET("/users", ctr.GetAccounts)
+	e.GET("/user/:uid", ctr.GetAccount)
+	e.PUT("/user/:uid", ctr.UpdateAccount)
+	e.DELETE("/user/:uid", ctr.DeleteAccount)
 
 	// サーバー起動(ここでportを指定する)
 	e.Start(":1323")
