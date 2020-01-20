@@ -1,16 +1,23 @@
 package main
 
 import (
-	// controllerパッケージをimport
-	"./controller"
+	// controllerパッケージをimportしてctrというエイリアスをつける（使用するとき長いので）
+	ctr "api-server/controller"
+	m "api-server/model"
 
 	// go get "github.com/dgrijalva/jwt-go" を実行して事前に取得しとく
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 )
 
+// ルーティング設定とサーバーの起動を定義
+
 // エンドポイント（ここから処理が始まる）
 func main() {
+
+	// migrationを実行
+	m.MigrateDB()
+
 	// Echoのインスタンス作る
 	e := echo.New()
 
@@ -19,9 +26,12 @@ func main() {
 	// panicが発生したときにサーバーを維持するミドルウェア
 	e.Use(middleware.Recover())
 
-	// pathと関数の紐付け（ルーティング）
-	// http://localhost:1323/hello を叩くとHelloが呼ばれる
-	e.GET("/hello", controller.Hello)
+	// 以下、pathとhandler関数の紐付け（ルーティング）
+
+	e.GET("/hello", ctr.Hello)
+	e.GET("/users", ctr.GetUsersHandler)
+	e.GET("/user/create", ctr.CreateUserHandler)
+	e.GET("/users/delete", ctr.DeleteUsersHandler)
 
 	// サーバー起動(ここでportを指定する)
 	e.Start(":1323")
