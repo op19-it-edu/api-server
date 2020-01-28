@@ -28,11 +28,16 @@ func main() {
 
 	// 以下、pathとhandler関数の紐付け（ルーティング）
 
+	// 認証なし
 	e.POST("/signup", ctr.SignUp)
-	e.GET("/users", ctr.GetAccounts)
-	e.GET("/user/:uid", ctr.GetAccount)
-	e.PUT("/user/:uid", ctr.UpdateAccount)
-	e.DELETE("/user/:uid", ctr.DeleteAccount)
+
+	api := e.Group("/api/v1")
+
+	// 以下、JWT認証が必要
+	api.GET("/users", ctr.GetAccounts)
+	api.GET("/user/:uid", ctr.GetAccount)
+	api.PUT("/user/:uid", ctr.UpdateAccount)
+	api.DELETE("/user/:uid", ctr.DeleteAccount)
 
 	// サーバー起動(ここでportを指定する)
 	e.Start(":1323")
