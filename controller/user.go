@@ -47,16 +47,36 @@ func GetAccount(c echo.Context) error {
 }
 
 // アカウント編集用のhandler
-func UpdateAccount(c echo.Context) error {
+func UpdateAccountName(c echo.Context) error {
 
 	uid, _ := strconv.Atoi(c.Param("uid"))
 	name := c.FormValue("name")
+
+	m.UpdateUserName(uid, name)
+
+	return c.String(http.StatusOK, "ユーザー名が更新されました")
+
+}
+
+func UpdateAccountPassword(c echo.Context) error {
+
+	uid, _ := strconv.Atoi(c.Param("uid"))
 	password := c.FormValue("password")
+
+	m.UpdateUserPassword(uid, password)
+
+	return c.String(http.StatusOK, "パスワードが更新されました")
+
+}
+
+func UpdateAccountDiscription(c echo.Context) error {
+
+	uid, _ := strconv.Atoi(c.Param("uid"))
 	discription := c.FormValue("discription")
 
-	m.UpdateUser(uid, name, password, discription)
+	m.UpdateUserDiscription(uid, discription)
 
-	return c.String(http.StatusOK, "user updated")
+	return c.String(http.StatusOK, "bioが更新されました")
 
 }
 

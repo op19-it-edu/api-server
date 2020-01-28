@@ -46,12 +46,34 @@ func GetUser(uid int) User {
 }
 
 // user_idがuidに一致するレコードの情報を更新する関数
-func UpdateUser(uid int, name, password, discription string) {
+func UpdateUserName(uid int, name string) {
 
 	db := InitDB()
 	user := User{}
 
-	db.Model(&user).Updates(map[string]interface{}{"user_name": name, "user_password": password, "user_discription": discription})
+	db.Model(&user).Where("id = ?", uid).Update("user_name", name)
+
+	defer db.Close()
+
+}
+
+func UpdateUserPassword(uid int, password string) {
+
+	db := InitDB()
+	user := User{}
+
+	db.Model(&user).Where("id = ?", uid).Update("user_password", password)
+
+	defer db.Close()
+
+}
+
+func UpdateUserDiscription(uid int, discription string) {
+
+	db := InitDB()
+	user := User{}
+
+	db.Model(&user).Where("id = ?", uid).Update("user_name", discription)
 
 	defer db.Close()
 
