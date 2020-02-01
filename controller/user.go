@@ -51,19 +51,10 @@ func UpdateAccount(c echo.Context) error {
 	uid, _ := strconv.Atoi(c.Param("uid"))
 
 	name := c.FormValue("name")
-	if name != "" {
-		m.UpdateUserName(uid, name)
-	}
-
 	password := c.FormValue("password")
-	if password != "" {
-		m.UpdateUserPassword(uid, password)
-	}
-
 	discription := c.FormValue("discription")
-	if discription != "" {
-		m.UpdateUserDiscription(uid, discription)
-	}
+
+	m.UpdateUser(uid, name, password, discription)
 
 	return c.String(http.StatusOK, "user updated")
 
