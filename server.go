@@ -36,9 +36,7 @@ func main() {
 	// 以下、JWT認証が必要
 	api.GET("/users", ctr.GetAccounts)
 	api.GET("/user/:uid", ctr.GetAccount)
-	api.PUT("/user/name/:uid", ctr.UpdateAccountName)
-	api.PUT("/user/password/:uid", ctr.UpdateAccountPassword)
-	api.PUT("/user/discription/:uid", ctr.UpdateAccountDiscription)
+	api.PUT("/user/:uid", ctr.UpdateAccount)
 	api.DELETE("/user/:uid", ctr.DeleteAccount)
 
 	// サーバー起動(ここでportを指定する)

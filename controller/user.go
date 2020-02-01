@@ -25,12 +25,11 @@ func SignUp(c echo.Context) error {
 
 }
 
-
 // アカウント一覧表示用のhandler(DB確認用)
 func GetAccounts(c echo.Context) error {
 
 	users := m.GetUsers()
-	
+
 	return c.JSON(http.StatusOK, users)
 
 }
@@ -47,36 +46,26 @@ func GetAccount(c echo.Context) error {
 }
 
 // アカウント編集用のhandler
-func UpdateAccountName(c echo.Context) error {
+func UpdateAccount(c echo.Context) error {
 
 	uid, _ := strconv.Atoi(c.Param("uid"))
+
 	name := c.FormValue("name")
+	if name != "" {
+		m.UpdateUserName(uid, name)
+	}
 
-	m.UpdateUserName(uid, name)
-
-	return c.String(http.StatusOK, "ユーザー名が更新されました")
-
-}
-
-func UpdateAccountPassword(c echo.Context) error {
-
-	uid, _ := strconv.Atoi(c.Param("uid"))
 	password := c.FormValue("password")
+	if password != "" {
+		m.UpdateUserPassword(uid, password)
+	}
 
-	m.UpdateUserPassword(uid, password)
-
-	return c.String(http.StatusOK, "パスワードが更新されました")
-
-}
-
-func UpdateAccountDiscription(c echo.Context) error {
-
-	uid, _ := strconv.Atoi(c.Param("uid"))
 	discription := c.FormValue("discription")
+	if discription != "" {
+		m.UpdateUserDiscription(uid, discription)
+	}
 
-	m.UpdateUserDiscription(uid, discription)
-
-	return c.String(http.StatusOK, "bioが更新されました")
+	return c.String(http.StatusOK, "user updated")
 
 }
 

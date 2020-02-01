@@ -73,7 +73,7 @@ func UpdateUserDiscription(uid int, discription string) {
 	db := InitDB()
 	user := User{}
 
-	db.Model(&user).Where("id = ?", uid).Update("user_name", discription)
+	db.Model(&user).Where("id = ?", uid).Update("user_discription", discription)
 
 	defer db.Close()
 
