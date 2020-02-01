@@ -13,9 +13,9 @@ type User struct {
 	// gorm.ModelはID, CreatedAt, UpdatedAt, DeletedAtを自動挿入する
 	gorm.Model
 	// タグでDBに作成されるカラム名やデータ型を指定する
-	Name        string `gorm:"type:text;column:user_name"`
-	Password    string `gorm:"type:text;column:user_password"`
-	Discription string `gorm:"type:text;column:user_discription"`
+	UserName        string `gorm:"type:varchar(15);unique;not null"`
+	UserPassword    string `gorm:"type:varchar(255);not null"`
+	UserDiscription string `gorm:"type:varchar(160)"`
 
 	// has manyの関係を明示
 	Relations  []Relation
@@ -39,7 +39,7 @@ type TodoTweet struct {
 	UserID uint
 
 	// typeでデータ型を指定
-	Todo     string    `gorm:"type:text"`
+	Todo     string    `gorm:"type:varchar(140)"`
 	Deadline time.Time `gorm:"type:datetime"`
 	Done     bool      `gorm:"type:boolean"`
 }
