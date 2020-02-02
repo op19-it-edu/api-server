@@ -31,7 +31,15 @@ func GetUsers() []User {
 
 }
 
-// user_idがuidに一致するレコードを返す関数
+// userNameが一致するレコードを返す
+func FindUser(u *User) User {
+	db := InitDB()
+	user := User{}
+	db.Where(u).First(&user)
+	return user
+}
+
+// userIDがuidに一致するレコードを返す関数
 func GetUser(uid int) User {
 
 	db := InitDB()
@@ -57,13 +65,20 @@ func UpdateUser(uid int, name, password, description string) {
 
 }
 
-// user_idがuidに一致するレコードを削除する関数
+// userIDがuidに一致するレコードを削除する関数
 func DeleteUser(uid int) {
 
 	db := InitDB()
 	user := User{}
 
-	db.Where("id = ?", uid).Delete(&user)
+	// Deleteする際のid指定はuintじゃないといけないので、intからuintにキャストしておく
+	castedID := uint(uid)
+
+	// キャストしたuserIDを構造体に代入する
+	user.ID = castedID
+
+	db.Unscoped().Delete(&user)
+	// db.Model(&user).Where("id = ?", uid).Delete(&user)
 
 	defer db.Close()
 
