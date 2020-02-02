@@ -27,9 +27,9 @@ func CreateUser() {
 	// 構造体Userを初期化（テスト用のユーザー情報を格納）してuserに格納
 	// これが追加するレコード
 	user := User{
-		Name:        "hogehoge",
-		Password:    "password",
-		Discription: "fugafuga",
+		UserName:        "hogehoge",
+		UserPassword:    "password",
+		UserDiscription: "fugafuga",
 	}
 
 	// DBにuserレコードを追加
