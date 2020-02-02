@@ -45,13 +45,13 @@ func GetUser(uid int) User {
 
 }
 
-func UpdateUser(uid int, name, password, discription string) {
+func UpdateUser(uid int, name, password, description string) {
 
 	db := InitDB()
 	user := User{}
 
 	// 空白のフィールドは無視してレコードを更新する
-	db.Model(&user).Where("id = ?", uid).Updates(User{UserName: name, UserPassword: password, UserDiscription: discription})
+	db.Model(&user).Where("id = ?", uid).Updates(User{UserName: name, UserPassword: password, UserDescription: description})
 
 	defer db.Close()
 

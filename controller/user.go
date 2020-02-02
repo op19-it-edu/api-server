@@ -52,9 +52,9 @@ func UpdateAccount(c echo.Context) error {
 
 	name := c.FormValue("name")
 	password := c.FormValue("password")
-	discription := c.FormValue("discription")
+	description := c.FormValue("description")
 
-	m.UpdateUser(uid, name, password, discription)
+	m.UpdateUser(uid, name, password, description)
 
 	return c.String(http.StatusOK, "user updated")
 
