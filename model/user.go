@@ -29,7 +29,7 @@ func CreateUser() {
 	user := User{
 		UserName:        "hogehoge",
 		UserPassword:    "password",
-		UserDiscription: "fugafuga",
+		UserDescription: "fugafuga",
 	}
 
 	// DBにuserレコードを追加

@@ -15,7 +15,7 @@ type User struct {
 	// タグでDBに作成されるカラム名やデータ型を指定する
 	UserName        string `gorm:"type:varchar(15);unique;not null"`
 	UserPassword    string `gorm:"type:varchar(255);not null"`
-	UserDiscription string `gorm:"type:varchar(160)"`
+	UserDescription string `gorm:"type:varchar(160)"`
 
 	// has manyの関係を明示
 	Relations  []Relation
