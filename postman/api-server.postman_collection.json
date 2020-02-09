@@ -115,7 +115,7 @@
 							"type": "text"
 						},
 						{
-							"key": "discription",
+							"key": "description",
 							"value": "Hello, World",
 							"type": "text"
 						}
