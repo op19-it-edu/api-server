@@ -1,6 +1,8 @@
 package model
 
 import (
+	conf "api-server/config"
+	
 	// gormパッケージ
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
@@ -10,12 +12,15 @@ import (
 
 func InitDB() *gorm.DB {
 
+	// デコードしたjsonをcfに格納
+	cf := conf.DecodeJson()
+
 	// DBサーバーの情報
-	DBMS := "mysql"
-	user := "root"
-	password := "password"
-	protocol := "tcp(127.0.0.1:3306)"
-	DBname := "todotweet_db"
+	DBMS := cf.DBMS
+	user := cf.User
+	password := cf.Password
+	protocol := cf.Protocol
+	DBname := cf.DBName
 
 	DBInfo := user + ":" + password + "@" + protocol + "/" + DBname + "?parseTime=true"
 
