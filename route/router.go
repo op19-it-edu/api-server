@@ -36,6 +36,11 @@ func NewRouter() *echo.Echo {
 
 	// followeeを検索するため全ユーザーを返す
 	api.GET("/users", ctr.GetAllAccounts)
+	// followeeを新規作成する
+	api.POST("/relation/:id", ctr.CreateRelation)
+	api.DELETE("/relation/:id", ctr.DeleteRelation)
+	api.GET("/followee/:id", ctr.GetFollowee)
+	api.GET("/follower/:id", ctr.GetFollower)
 
 	// 該当ユーザー情報を表示するため(後々、該当ユーザーのtodoも返す)
 	api.GET("/user/:id", ctr.GetAccount)

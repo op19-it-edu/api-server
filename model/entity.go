@@ -27,11 +27,11 @@ type Relation struct {
 	gorm.Model
 
 	// 外部キー（usersテーブル）
-	UserID   uint
-	FollowID uint
+	UserID   uint `gorm:"not null"`
+	FollowID uint `gorm:"not null"`
 }
 
-// todo_tweetsテーブル
+// todo_tweetsテーブルs
 type TodoTweet struct {
 	gorm.Model
 
