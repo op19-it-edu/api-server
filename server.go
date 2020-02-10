@@ -12,7 +12,7 @@ import (
 
 // ルーティング設定とサーバーの起動を定義
 
-// エンドポイント（ここから処理が始まる）
+// エントリーポイント（ここから処理が始まる）
 func main() {
 
 	// migrationを実行
@@ -28,10 +28,16 @@ func main() {
 
 	// 以下、pathとhandler関数の紐付け（ルーティング）
 
-	e.GET("/hello", ctr.Hello)
-	e.GET("/users", ctr.GetUsersHandler)
-	e.GET("/user/create", ctr.CreateUserHandler)
-	e.GET("/users/delete", ctr.DeleteUsersHandler)
+	// 認証なし
+	e.POST("/signup", ctr.SignUp)
+
+	api := e.Group("/api/v1")
+
+	// 以下、JWT認証が必要
+	api.GET("/users", ctr.GetAccounts)
+	api.GET("/user/:uid", ctr.GetAccount)
+	api.PUT("/user/:uid", ctr.UpdateAccount)
+	api.DELETE("/user/:uid", ctr.DeleteAccount)
 
 	// サーバー起動(ここでportを指定する)
 	e.Start(":1323")
