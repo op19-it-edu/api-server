@@ -22,12 +22,12 @@
 					"urlencoded": [
 						{
 							"key": "name",
-							"value": "user_name",
+							"value": "name_1",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "password",
+							"value": "password_1",
 							"type": "text"
 						}
 					]
@@ -47,9 +47,181 @@
 			"response": []
 		},
 		{
-			"name": "GetAccounts",
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "name_1",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password_1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/login",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetSelfAccount",
 			"request": {
 				"method": "GET",
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/api/v1/user",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v1",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateAccount",
+			"request": {
+				"method": "PUT",
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "name_1_updated",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password_1_updated",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Hello, World",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/api/v1/settings/profile",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v1",
+						"settings",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteAccount",
+			"request": {
+				"method": "DELETE",
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/api/v1/user",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v1",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllAccounts",
+			"request": {
+				"method": "GET",
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
 				"header": [],
 				"url": {
 					"raw": "http://{{host}}:{{port}}/api/v1/users",
@@ -71,77 +243,16 @@
 			"name": "GetAccount",
 			"request": {
 				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://{{host}}:{{port}}/api/v1/user/1",
-					"protocol": "http",
-					"host": [
-						"{{host}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"api",
-						"v1",
-						"user",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "UpdateAccount",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
+				"auth": {
+					"type": "bearer",
+					"bearer": [
 						{
-							"key": "name",
-							"value": "new_username",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "new_password",
-							"type": "text"
-						},
-						{
-							"key": "description",
-							"value": "Hello, World",
-							"type": "text"
+							"key": "token",
+							"value": "",
+							"type": "string"
 						}
 					]
 				},
-				"url": {
-					"raw": "http://{{host}}:{{port}}/api/v1/user/1",
-					"protocol": "http",
-					"host": [
-						"{{host}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"api",
-						"v1",
-						"user",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "DeleteAccount",
-			"request": {
-				"method": "DELETE",
 				"header": [],
 				"url": {
 					"raw": "http://{{host}}:{{port}}/api/v1/user/1",
