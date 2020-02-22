@@ -29,7 +29,7 @@ func NewRouter() *echo.Echo {
 	// 以下、JWT認証が必要
 	// accountに関するRUD
 	api.GET("/user", ctr.GetSelfAccount)
-	api.PUT("/settings/profile", ctr.UpdateAccount)
+	api.PUT("/user", ctr.UpdateAccount)
 	api.DELETE("/user", ctr.DeleteAccount)
 
 	// followeeを検索するため全ユーザーを返す
