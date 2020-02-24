@@ -240,6 +240,138 @@
 			"response": []
 		},
 		{
+			"name": "CreateRelation",
+			"request": {
+				"method": "POST",
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/api/v1/relation/2",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v1",
+						"relation",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteRelation",
+			"request": {
+				"method": "DELETE",
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/api/v1/relation/2",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v1",
+						"relation",
+						"2"
+					]
+				}
+			}
+		},
+		{
+			"name": "GetFollowee",
+			"request": {
+				"method": "GET",
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/api/v1/followee/1",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v1",
+						"followee",
+						"1"
+					]
+				}
+			}
+		},
+		{
+			"name": "GetFollower",
+			"request": {
+				"method": "GET",
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/api/v1/follower/2",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v1",
+						"follower",
+						"2"
+					]
+				}
+			}
+		},
+		{
 			"name": "GetAccount",
 			"request": {
 				"method": "GET",
