@@ -36,10 +36,10 @@ type TodoTweet struct {
 	gorm.Model
 
 	// 外部キー（usersテーブル）
-	UserID uint
+	UserID uint `gorm:"not null"`
 
 	// typeでデータ型を指定
-	Todo     string    `gorm:"type:varchar(140)"`
+	Todo     string    `gorm:"type:varchar(140);not null"`
 	Deadline time.Time `gorm:"type:datetime"`
 	Done     bool      `gorm:"type:boolean"`
 }
