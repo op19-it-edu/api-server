@@ -49,7 +49,7 @@ func NewRouter() *echo.Echo {
 	api.DELETE("/todo/:id", ctr.DeleteTodo)
 
 	// timelineのR
-	// api.GET("/timeline", ctr.GetTimeline)
+	api.GET("/timeline", ctr.GetTimeline)
 
 	// 該当ユーザー情報を表示するため(後々、該当ユーザーのtodoも返す)
 	api.GET("/user/:id", ctr.GetAccount)

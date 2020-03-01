@@ -1,6 +1,8 @@
 package model
 
-import "time"
+import (
+	"time"
+)
 
 func CreateTodo(userID uint, todo string, deadline time.Time) {
 
@@ -53,4 +55,30 @@ func DeleteTodo(todoID int) {
 	db.Unscoped().Delete(&todoTweet)
 
 	defer db.Close()
+}
+
+func GetFolloweeTodos(followeeIDs []uint) []TodoTweet {
+
+	db := InitDB()
+	todoTweets := [][]TodoTweet{}
+
+	// FolloweeIDの数だけレコードを取得して追加していく
+	for n := range followeeIDs {
+		todoTweet := []TodoTweet{}
+		db.Where(&TodoTweet{UserID: followeeIDs[n]}).Find(&todoTweet)
+		todoTweets = append(todoTweets, todoTweet)
+	}
+
+	defer db.Close()
+
+	// ネストしている構造体をフラットにする
+	todoTweet := []TodoTweet{}
+	for i, _ := range todoTweets {
+		result := todoTweets[i]
+		for i, _ := range result {
+			todoTweet = append(todoTweet, result[i])
+		}
+	}
+
+	return todoTweet
 }
