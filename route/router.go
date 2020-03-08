@@ -2,6 +2,7 @@ package route
 
 import (
 	ctr "api-server/controller"
+	mid "api-server/middleware"
 
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
@@ -25,6 +26,7 @@ func NewRouter() *echo.Echo {
 
 	api := e.Group("/api/v1")
 	api.Use(middleware.JWTWithConfig(ctr.Config))
+	api.Use(mid.JWTCustomMiddleware())
 
 	// 以下、JWT認証が必要
 	// accountに関するRUD

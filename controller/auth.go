@@ -88,7 +88,7 @@ func Login(c echo.Context) error {
 }
 
 // requestのjwtからuserIdを取り出す
-func userIdFromToken(c echo.Context) int {
+func UserIdFromToken(c echo.Context) int {
 	loginUser := c.Get("user").(*jwt.Token)
 	claims := loginUser.Claims.(*jwtCustomClaims)
 	userID := claims.UID

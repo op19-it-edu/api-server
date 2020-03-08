@@ -17,17 +17,9 @@ import (
 // ログインユーザーのアカウント情報表示用のhandler
 func GetSelfAccount(c echo.Context) error {
 
-	// jwtから取り出したuserIDがテーブルに存在しなければエラーを返す
-	userID := userIdFromToken(c)
+	// jwtから取り出したuserIDに合致するレコードを取り出す
+	userID := UserIdFromToken(c)
 	loginUser := m.GetUser(userID)
-
-	// userIDがゼロの場合はエラーを返す
-	if loginUser.ID == 0 {
-		return &echo.HTTPError{
-			Code:    http.StatusBadRequest,
-			Message: "user not signuped",
-		}
-	}
 
 	return c.JSON(http.StatusOK, loginUser)
 }
@@ -35,17 +27,8 @@ func GetSelfAccount(c echo.Context) error {
 // アカウント編集用のhandler
 func UpdateAccount(c echo.Context) error {
 
-	// jwtから取り出したuuserIDがテーブルに存在しなければエラーを返す
-	userID := userIdFromToken(c)
-	loginUser := m.GetUser(userID)
-
-	// userIDがゼロの場合はエラーを返す
-	if loginUser.ID == 0 {
-		return &echo.HTTPError{
-			Code:    http.StatusBadRequest,
-			Message: "user not signuped",
-		}
-	}
+	// jwtからuserIDを取り出す
+	userID := UserIdFromToken(c)
 
 	// requestから受け取った各値を変数に格納する
 	name := c.FormValue("name")
@@ -61,17 +44,8 @@ func UpdateAccount(c echo.Context) error {
 // アカウント削除用のhandler
 func DeleteAccount(c echo.Context) error {
 
-	// jwtから取り出したuidがテーブルに存在しなければエラーを返す
-	userID := userIdFromToken(c)
-	loginUser := m.GetUser(userID)
-
-	// userIDがゼロの場合はエラーを返す
-	if loginUser.ID == 0 {
-		return &echo.HTTPError{
-			Code:    http.StatusBadRequest,
-			Message: "user not signuped",
-		}
-	}
+	// jwtからuserIDを取り出す
+	userID := UserIdFromToken(c)
 
 	m.DeleteUser(userID)
 
@@ -82,18 +56,6 @@ func DeleteAccount(c echo.Context) error {
 // アカウント一覧表示用のhandler(followeeを検索するため全ユーザーを返す)
 func GetAllAccounts(c echo.Context) error {
 
-	// jwtから取り出したuserIDがテーブルに存在しなければエラーを返す
-	userID := userIdFromToken(c)
-	loginUser := m.GetUser(userID)
-
-	// userIDがゼロの場合はエラーを返す
-	if loginUser.ID == 0 {
-		return &echo.HTTPError{
-			Code:    http.StatusBadRequest,
-			Message: "user not signuped",
-		}
-	}
-
 	// 全ユーザー情報をDBから取得する
 	users := m.GetUsers()
 
@@ -103,18 +65,6 @@ func GetAllAccounts(c echo.Context) error {
 
 // 該当ユーザーのアカウント情報表示用のhandler(後々、該当ユーザーのtodoも返す)
 func GetAccount(c echo.Context) error {
-
-	// jwtから取り出したuserIDがテーブルに存在しなければエラーを返す
-	userID := userIdFromToken(c)
-	loginUser := m.GetUser(userID)
-
-	// userIDがゼロの場合はエラーを返す
-	if loginUser.ID == 0 {
-		return &echo.HTTPError{
-			Code:    http.StatusBadRequest,
-			Message: "user not signuped",
-		}
-	}
 
 	// requestから受け取った各値を変数に格納する
 	uid, _ := strconv.Atoi(c.Param("id"))

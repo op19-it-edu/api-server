@@ -2,7 +2,7 @@ package model
 
 import (
 	conf "api-server/config"
-	
+
 	// gormパッケージ
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
