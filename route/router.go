@@ -42,6 +42,15 @@ func NewRouter() *echo.Echo {
 	api.GET("/followee/:id", ctr.GetFollowee)
 	api.GET("/follower/:id", ctr.GetFollower)
 
+	// todoのCRUD
+	api.POST("/todo", ctr.CreateTodo)
+	api.GET("/todo/:id", ctr.GetTodo)
+	api.PUT("/todo/:id", ctr.UpdateTodo)
+	api.DELETE("/todo/:id", ctr.DeleteTodo)
+
+	// timelineのR
+	api.GET("/timeline", ctr.GetTimeline)
+
 	// 該当ユーザー情報を表示するため(後々、該当ユーザーのtodoも返す)
 	api.GET("/user/:id", ctr.GetAccount)
 
