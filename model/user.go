@@ -53,6 +53,22 @@ func GetUser(uid int) User {
 
 }
 
+// userIDが一致するレコード全てを返す(fllowee, followerを返すため)
+func GetRelators(IDs []int) []User {
+	db := InitDB()
+	users := []User{}
+
+	for _, v := range IDs {
+		user := User{}
+		db.Where("id = ?", v).Find(&user)
+		user.UserPassword = ""
+		users = append(users, user)
+	}
+
+	return users
+
+}
+
 func UpdateUser(uid int, name, password, description string) {
 
 	db := InitDB()
@@ -78,7 +94,6 @@ func DeleteUser(uid int) {
 	user.ID = castedID
 
 	db.Unscoped().Delete(&user)
-	// db.Model(&user).Where("id = ?", uid).Delete(&user)
 
 	defer db.Close()
 
